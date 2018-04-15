@@ -1,0 +1,45 @@
+{
+  "name": "react-app-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "npm": "^5.8.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
+  },
+  "private": true,
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "html-webpack-plugin": "^3.1.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.12.0",
+    "pretty-quick": "^1.4.1",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development --hot --inline --open --history-api-fallback --content-base ./dist",
+    "build": "webpack --mode development",
+    "build:prod": "webpack --mode production -p",
+    "precommit": "pretty-quick --staged"
+  },
+  "keywords": [],
+  "author": "Javier Villanueva",
+  "license": "MIT"
+}

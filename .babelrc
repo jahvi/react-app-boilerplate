@@ -1,0 +1,12 @@
+{
+  "presets": [["env", { "modules": false }], "stage-2", "react", "flow"],
+  "plugins": [
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false
+      }
+    ]
+  ]
+}
