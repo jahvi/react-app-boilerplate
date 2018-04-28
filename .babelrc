@@ -1,5 +1,5 @@
 {
-  "presets": [["env", { "modules": false }], "stage-2", "react", "flow"],
+  "presets": ["env", "stage-2", "react", "flow"],
   "plugins": [
     [
       "transform-runtime",
@@ -8,5 +8,15 @@
         "polyfill": false
       }
     ]
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        ["env", { "modules": false, "useBuiltIns": false, "debug": false }],
+        "stage-2",
+        "react",
+        "flow"
+      ]
+    }
+  }
 }

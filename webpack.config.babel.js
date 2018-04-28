@@ -1,5 +1,8 @@
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import { resolve } from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+
+const isAnalyze = process.argv.includes('--env.analyze');
 
 const config = {
   entry: './src/index.js',
@@ -59,7 +62,8 @@ const config = {
     new HtmlWebpackPlugin({
       filename: resolve(__dirname, './dist/index.html'),
       template: './public/index.html'
-    })
+    }),
+    ...(isAnalyze ? [new BundleAnalyzerPlugin()] : [])
   ],
   optimization: {
     splitChunks: {
@@ -75,4 +79,4 @@ const config = {
   }
 };
 
-module.exports = config;
+export default config;

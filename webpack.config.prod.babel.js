@@ -1,10 +1,13 @@
-const { resolve } = require('path');
-const merge = require('webpack-merge');
-const common = require('./webpack.config.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import { resolve } from 'path';
+import { strategy } from 'webpack-merge';
+import common from './webpack.config.babel.js';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin, { extract } from 'extract-text-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-const config = merge.strategy({
+const isAnalyze = process.argv.includes('--env.analyze');
+
+const config = strategy({
   plugins: 'replace',
   'module.rules': 'replace'
 })(common, {
@@ -27,7 +30,7 @@ const config = merge.strategy({
         rules: [
           {
             exclude: resolve(__dirname, './src'),
-            use: ExtractTextPlugin.extract({
+            use: extract({
               fallback: 'style-loader',
               use: [
                 {
@@ -49,7 +52,7 @@ const config = merge.strategy({
           },
           {
             include: resolve(__dirname, './src'),
-            use: ExtractTextPlugin.extract({
+            use: extract({
               fallback: 'style-loader',
               use: [
                 {
@@ -87,11 +90,14 @@ const config = merge.strategy({
         collapseWhitespace: true,
         collapseInlineTagWhitespace: true,
         removeComments: true,
-        removeRedundantAttributes: true
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true
       }
     }),
-    new ExtractTextPlugin('[contenthash:base64:5].css')
+    new ExtractTextPlugin('[name].[contenthash:base64:5].css'),
+    ...(isAnalyze ? [new BundleAnalyzerPlugin()] : [])
   ]
 });
 
-module.exports = config;
+export default config;
